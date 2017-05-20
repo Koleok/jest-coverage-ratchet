@@ -1,25 +1,23 @@
-const fs = require('fs');
-const R = require('ramda');
-const F = require('fluture');
+const R = require('ramda')
+const F = require('fluture')
+const { red, yellow } = require('chalk')
 
-const projectDir = process.cwd();
-const coverage = require(`${projectDir}/coverage/coverage-summary.json`);
-const packageJson = require(`${projectDir}/package.json`);
+const {
+  getNewThresholds,
+  writePackage,
+  thresholdLens,
+  formatJson,
+} = require('./utils')
 
-const packagePath = `${process.cwd()}/package.json`;
-const thresholdLens = R.lensPath(['jest', 'coverageThreshold', 'global']);
-const writePackage = x => F.node(done => fs.writeFile(packagePath, x, 'utf8', done));
+const projectDir = process.cwd()
+const packagePath = `${projectDir}/package.json`
+const packageJson = require(packagePath)
 
-const getNewThresholds = R.pipe(
-  R.prop('total'),
-  R.toPairs,
-  R.map(R.over(R.lensIndex(1), R.prop('pct'))),
-  R.fromPairs
-);
-
-F.of(coverage)
+const program = x => F.of(x)
   .map(getNewThresholds)
   .map(R.set(thresholdLens, R.__, packageJson))
-  .map(x => JSON.stringify(x, null, 2))
+  .map(formatJson)
   .chain(writePackage)
-  .fork(console.error, console.log);
+
+const coverage = require(`${projectDir}/coverage/coverage-summary.json`)
+program(coverage).fork(console.error, console.log)
