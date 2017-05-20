@@ -1,0 +1,8 @@
+{
+  "name": "jest-coverage-ratchet",
+  "version": "0.1.0",
+  "description": "Ensures code coverage only increases",
+  "main": "index.js",
+  "author": "Kyle Chamberlain",
+  "license": "MIT"
+}
