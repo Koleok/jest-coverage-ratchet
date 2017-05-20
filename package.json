@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "Kyle Chamberlain",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Koleok/jest-coverage-ratchet.git"
+  },
   "keywords": [
     "lint-staged",
     "testing",
