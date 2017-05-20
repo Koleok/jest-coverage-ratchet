@@ -17,7 +17,21 @@
   "scripts": {
     "jest": "./node_modules/.bin/jest",
     "test": "yarn jest",
-    "test:watch": "yarn jest -- --watch"
+    "test:watch": "yarn jest -- --watch",
+    "lint": "./node_modules/.bin/eslint . --ext .js --ext .jsx",
+    "lint:staged": "./node_modules/.bin/lint-staged",
+    "lint:errors": "yarn lint -- --quiet",
+    "lint:fix": "yarn lint -- --fix",
+    "format": "./node_modules/.bin/prettier-eslint \"*(both|client|server)/**/*.js\" --write",
+    "prepush": "yarn test",
+    "precommit": "yarn lint:staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "./node_modules/.bin/prettier-eslint --write",
+      "git add",
+      "./node_modules/.bin/eslint"
+    ]
   },
   "dependencies": {
     "babel-eslint": "^7.2.3",
