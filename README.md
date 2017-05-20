@@ -2,6 +2,21 @@
 
 Raises `jest`'s minimum coverage thresholds _(per category)_ if current coverage is higher.
 
+## Installation
+
+Just add as a dev dependency to your project like
+```bash
+npm install --save-dev jest-coverage-ratchet
+```
+
+or
+
+```bash
+yarn add --dev jest-coverage-ratchet
+```
+
+I recommend then using the binary `jest-coverage-ratchet` as part of a [`prepush` hook](https://github.com/typicode/husky).
+
 ## Assumptions
 
 I know what happens [when you assume](http://www.urbandictionary.com/define.php?term=Assume), but in order to get this working on a project quickly, `jest-coverage-ratchet` makes the following assumptions about your project.
