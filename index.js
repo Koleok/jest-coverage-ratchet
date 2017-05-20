@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const R = require('ramda')
 const F = require('fluture')
 const { bold, green } = require('chalk')
@@ -8,7 +9,6 @@ const {
   writePackage,
   thresholdLens,
   formatJson,
-  log,
 } = require('./utils')
 
 const projectDir = process.cwd()
