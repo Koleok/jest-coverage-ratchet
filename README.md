@@ -2,6 +2,40 @@
 
 Raises `jest`'s minimum coverage thresholds _(per category)_ if current coverage is higher.
 
+## What does it do?
+
+Lets say you have some [jest coverage thresholds](https://facebook.github.io/jest/docs/configuration.html#coveragethreshold-object) set in the `package.json` for your project at the following values:
+```javascript
+{
+  "branches": 30,
+  "functions": 30,
+  "lines": 30,
+  "statements": 50,
+}
+```
+
+then you get inspired one day and write lots of tests. Now your actual coverage summary might look like this:
+```javascript
+{
+  "branches": 50,
+  "functions": 60,
+  "lines": 77,
+  "statements": 50,
+}
+```
+
+Great 🌸‼ Except you'd really like your accomplishment to set the new standard for test coverage in this project. **`jest-coverage-ratchet` just does that automatically by looking at your current coverage summary, comparing it to your specified coverage thresholds, and updating the minimum for any threshold that is higher in the summary.**
+
+So given the previous values, running this script will update your coverage thresholds specified in the `jest` key of `package.json` to the following values:
+```javascript
+{
+  "branches": 50,
+  "functions": 60,
+  "lines": 77,
+  "statements": 50,
+}
+```
+
 ## Installation
 
 Just add as a dev dependency to your project like
@@ -22,7 +56,7 @@ I recommend then using the binary `jest-coverage-ratchet` as part of a [`prepush
 I know what happens [when you assume](http://www.urbandictionary.com/define.php?term=Assume), but in order to get this working on a project quickly, `jest-coverage-ratchet` makes the following assumptions about your project.
 
 - `jest` configuration object is present in the `package.json` that specifies [coverage thresholds](https://facebook.github.io/jest/docs/configuration.html#coveragethreshold-object) and at least the `json-summary` [reporter](https://facebook.github.io/jest/docs/configuration.html#coveragereporters-array-string) like so:
-```js
+```javascript
 {
   // ...
   "jest": {
