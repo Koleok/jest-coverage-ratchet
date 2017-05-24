@@ -5,9 +5,16 @@ const program = require('./program')
 
 const defaultCoveragePath = 'coverage/coverage-summary.json'
 const defaultConfigPath = 'package.json'
+const currentWorkingDir = process.cwd()
 
-const projectDir = process.cwd()
-const coveragePath = resolve(projectDir, argv.coverage || defaultCoveragePath)
-const configPath = resolve(projectDir, argv.config || defaultConfigPath)
+const coveragePath = resolve(
+  currentWorkingDir,
+  argv.coverageSummaryPath || defaultCoveragePath
+)
+
+const configPath = resolve(
+  currentWorkingDir,
+  argv.configPath || defaultConfigPath
+)
 
 program([coveragePath, configPath]).fork(logError, logSuccess)
