@@ -79,7 +79,7 @@ I know what happens [when you assume](http://www.urbandictionary.com/define.php?
   }
   ```
 
-Should this tool support things like jest config files and piping the coverage data in as an argument? Of course it should. If you want to build that and send a PR I will be all smiles 😀✨. If not then you probably see me do it _eventually_.
+Should this tool support things like piping the coverage data in as an argument? Of course it should. If you want to build that and send a PR I will be all smiles 😀✨. If not then you probably see me do it _eventually_.
 
 ## Questions?
 Just submit an issue or a PR, I'm no elitist.
