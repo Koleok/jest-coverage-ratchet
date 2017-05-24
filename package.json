@@ -39,16 +39,15 @@
     ]
   },
   "dependencies": {
-    "babel-eslint": "^7.2.3",
-    "babel-jest": "^20.0.3",
     "chalk": "^1.1.3",
-    "cliquer": "^0.1.5",
     "fluture": "^6.1.0",
-    "jest": "^20.0.3",
     "ramda": "^0.23.0",
     "yargs": "^8.0.1"
   },
   "devDependencies": {
+    "jest": "^20.0.3",
+    "babel-jest": "^20.0.3",
+    "babel-eslint": "^7.2.3",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.19.0",
