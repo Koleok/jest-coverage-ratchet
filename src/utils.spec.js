@@ -1,9 +1,6 @@
-import {
-  getNewThresholds,
-  ratchetThresholds,
-} from './utils'
+import { getNewThresholdsFromSummary, ratchetThresholds } from './utils'
 
-describe('#getNewThresholds', () => {
+describe('#getNewThresholdsFromSummary', () => {
   const branches = 0
   const functions = 2
   const lines = 6
@@ -18,7 +15,7 @@ describe('#getNewThresholds', () => {
   }
 
   it('should create summary object', () => {
-    expect(getNewThresholds(report)).toEqual({
+    expect(getNewThresholdsFromSummary(report)).toEqual({
       branches,
       functions,
       lines,
