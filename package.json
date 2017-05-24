@@ -19,6 +19,7 @@
     "ratchet"
   ],
   "scripts": {
+    "local": "node .",
     "jest": "./node_modules/.bin/jest",
     "test": "yarn jest",
     "test:watch": "yarn jest -- --watch",
@@ -26,7 +27,7 @@
     "lint:staged": "./node_modules/.bin/lint-staged",
     "lint:errors": "yarn lint -- --quiet",
     "lint:fix": "yarn lint -- --fix",
-    "format": "./node_modules/.bin/prettier-eslint \"*(both|client|server)/**/*.js\" --write",
+    "format": "./node_modules/.bin/prettier-eslint \"*src/**/*.js\" --write",
     "prepush": "yarn test",
     "precommit": "yarn lint:staged"
   },
@@ -41,9 +42,11 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^20.0.3",
     "chalk": "^1.1.3",
+    "cliquer": "^0.1.5",
     "fluture": "^6.1.0",
     "jest": "^20.0.3",
-    "ramda": "^0.23.0"
+    "ramda": "^0.23.0",
+    "yargs": "^8.0.1"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
