@@ -1,21 +1,14 @@
 import { getNewThresholdsFromSummary, ratchetThresholds } from './utils'
+import mockCoverageReport, {
+  branches,
+  functions,
+  lines,
+  statements,
+} from './coverageReport.mock'
 
 describe('#getNewThresholdsFromSummary', () => {
-  const branches = 0
-  const functions = 2
-  const lines = 6
-  const statements = 3
-  const report = {
-    total: {
-      branches: { pct: branches },
-      functions: { pct: functions },
-      lines: { pct: lines },
-      statements: { pct: statements },
-    },
-  }
-
   it('should create summary object', () => {
-    expect(getNewThresholdsFromSummary(report)).toEqual({
+    expect(getNewThresholdsFromSummary(mockCoverageReport)).toEqual({
       branches,
       functions,
       lines,
