@@ -2,6 +2,7 @@ const R = require('ramda')
 const F = require('fluture')
 
 const {
+  addLineBreak,
   formatJson,
   getCurrentThresholdsFromConfig,
   getNewThresholdsFromSummary,
@@ -28,6 +29,7 @@ module.exports = R.pipe(
     getPackageJson().map(R.set(thresholdLens, newThresholds))
   ),
   R.map(formatJson),
+  R.map(addLineBreak),
   R.chain(thresholds => F.both(getPackageJsonPath(), F.of(thresholds))),
   R.chain(R.apply(writeFileF))
 )

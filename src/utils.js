@@ -4,6 +4,9 @@ const F = require('fluture')
 const { resolve } = require('path')
 const { bold, green, red } = require('chalk')
 
+//    addLinebreak :: String -> String
+const addLinebreak = R.concat(R.__, '\n')
+
 //    formatJson :: Object -> String
 const formatJson = x => JSON.stringify(x, null, 2)
 
@@ -72,6 +75,7 @@ const writeFileF = R.curry((path, x) =>
 )
 
 module.exports = {
+  addLinebreak,
   formatJson,
   getCurrentThresholdsFromConfig,
   getNewThresholdsFromSummary,
