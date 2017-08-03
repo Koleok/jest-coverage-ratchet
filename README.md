@@ -81,5 +81,31 @@ I know what happens [when you assume](http://www.urbandictionary.com/define.php?
 
 Should this tool support things like piping the coverage data in as an argument? Of course it should. If you want to build that and send a PR I will be all smiles 😀✨. If not then you probably see me do it _eventually_.
 
+## Usage example
+After all assumptions are satisfied.
+Set scripts in the `package.json`...
+```javascript
+"scripts": {
+    "jest": "./node_modules/.bin/jest",
+    "ratchet": "./node_modules/.bin/jest-coverage-ratchet",
+    "test": "npm run jest && npm run ratchet && rm -rf coverage"
+```
+
+...run... 
+```bash 
+npm test
+```
+
+...and get it!
+```bash
+new coverage thresholds:
+{
+  "lines": Number,
+  "statements": Number,
+  "functions": Number,
+  "branches": Number
+}
+```
+
 ## Questions?
 Just submit an issue or a PR, I'm no elitist.
