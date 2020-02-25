@@ -46,28 +46,28 @@ const takeMaxValues = R.reduce(
 
 const configPath = ['coverageThreshold', 'global']
 
-//    thresholdLens :: Lens
-const thresholdLens = R.lensPath(['jest', ...configPath])
-
 //    ratchetThresholds :: (Object, Object) -> Object
 const ratchetThresholds = R.compose(takeMaxValues, R.unnest, R.map(R.toPairs))
 
-//    String -> Future a Error
+//    requireF :: String -> Future a Error
 const requireF = F.encase(require)
 
-//    getConfig :: String -> Future Object Error
+//    getThresholdLens :: String -> Lens
+const getThresholdLens = path =>
+  path.includes('jest')
+    ? R.lensPath(configPath)
+    : R.lensPath(['jest', ...configPath])
+
+//    getCurrentThresholdsFromConfig :: Object -> Object -> *
 const getCurrentThresholdsFromConfig = R.ifElse(
   R.has('jest'),
   R.path(['jest', ...configPath]),
   R.path(configPath)
 )
 
-//    getPackageJsonPath :: () -> Future String Error
-const getPackageJsonPath = () =>
-  F.of(process.cwd()).map(rootDir => resolve(rootDir, 'package.json'))
-
-//    getPackageJson :: () -> Future Object Error
-const getPackageJson = () => getPackageJsonPath().chain(requireF)
+//    resolveToRoot :: () -> Future String Error
+const resolveToRoot = dir =>
+  F.of(process.cwd()).map(rootDir => resolve(rootDir, dir))
 
 //    writePackage :: String -> Object -> Future Object Error
 const writeFileF = R.curry((path, x) =>
@@ -77,16 +77,15 @@ const writeFileF = R.curry((path, x) =>
 module.exports = {
   addLineBreak,
   formatJson,
-  getCurrentThresholdsFromConfig,
+  getThresholdLens,
   getNewThresholdsFromSummary,
-  getPackageJson,
-  getPackageJsonPath,
+  getCurrentThresholdsFromConfig,
+  resolveToRoot,
   log,
   logError,
   logResult,
   logSuccess,
   ratchetThresholds,
   requireF,
-  thresholdLens,
   writeFileF,
 }
